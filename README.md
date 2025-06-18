@@ -13,7 +13,7 @@ This is a responsive and visually elegant personal website built entirely with *
 
 You can access the portfolio at:
 
-**[https://nikolasmrt.github.io/](https://nikolasmrt.github.io/)**  
+**[https://portfolio-seven-bice-93.vercel.app/](https://portfolio-seven-bice-93.vercel.app/)**  
 > Or open `index.html` in your browser locally.
 
 ## 📁 Project Structure
