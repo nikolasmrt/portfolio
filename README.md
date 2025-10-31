@@ -55,7 +55,7 @@ You can find me on:
 
 - [GitHub](https://github.com/nikolasmrt)
 - [LinkedIn](https://www.linkedin.com/in/nikolas-martins-de-oliveira-3482812b1/)
-- [Instagram](https://www.instagram.com/nnk.mrt/)
+
 
 ---
 

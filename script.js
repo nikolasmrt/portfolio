@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * NOVO: Dicionário de Traduções (i18n)
+     * ATUALIZADO com 6 projetos
      */
     const translations = {
         "en": {
@@ -17,18 +18,25 @@ document.addEventListener('DOMContentLoaded', () => {
             "homeDescription": "Welcome to my digital space. Here you can explore my latest projects, access important links, and get to know more about my professional journey.",
             "sitesTitle": "Connect With Me",
             "sitesDescription": "Follow me on social and professional platforms to stay updated and connect directly:",
-            "sitesBtnInsta": "Instagram",
             "sitesBtnLinkedin": "LinkedIn",
             "sitesBtnGithub": "GitHub",
             "projectsTitle": "My Projects",
             "projectsDescription": "Explore some of my recent work and see what I’ve been building. Navigate through the carousel for more details!",
-            "proj1Title": "Sanrio Website",
-            "proj1Desc": "A static site created using HTML and CSS. It was crafted for experimentation and as a base for visual and responsive design testing.",
+            
+            // Projetos (Ordem do seu HTML)
             "proj2Title": "Eco-Life Sustainability",
             "proj2Desc": "An interactive desktop system built with Python and PySide6, designed to encourage sustainable habits and provide users with visual feedback and personalized recommendations.",
             "proj3Title": "Multilingual Translator",
             "proj3Desc": "A cross-language translator desktop app developed in Python, utilizing the MyMemory API and a sleek PySide6 interface for quick and intuitive translation workflows.",
-            "proj4Title": "Coming Soon!",
+            "proj1Title": "Sanrio Website",
+            "proj1Desc": "A static site created using HTML and CSS. It was crafted for experimentation and as a base for visual and responsive design testing.",
+            "proj4Title": "Finance Tracker",
+            "proj4Desc": "A simple, beautiful, and efficient finance tracker. No more spreadsheets that looked like ice-age contraptions: here, you calculate, see results, and move forward confidently.",
+            "proj5Title": "BookManagement API",
+            "proj5Desc": "A RESTful API for book management, built with Python and FastAPI. It demonstrates clean architecture, data validation with Pydantic, and automatic API documentation.",
+            "proj6Title": "Coming Soon!",
+            "proj6Desc": "...",
+
             "projBtnView": "View Project",
             "aboutTitle": "About Me",
             "aboutDesc1": "I am an Information Systems undergraduate student at PUC Minas (2024-2027), with a strong passion for artificial intelligence and software development.",
@@ -55,18 +63,25 @@ document.addEventListener('DOMContentLoaded', () => {
             "homeDescription": "Bem-vindo ao meu espaço digital. Aqui você pode explorar meus projetos mais recentes, acessar links importantes e conhecer mais sobre minha jornada profissional.",
             "sitesTitle": "Conecte-se Comigo",
             "sitesDescription": "Siga-me nas plataformas sociais e profissionais para se manter atualizado e se conectar diretamente:",
-            "sitesBtnInsta": "Instagram",
             "sitesBtnLinkedin": "LinkedIn",
             "sitesBtnGithub": "GitHub",
             "projectsTitle": "Meus Projetos",
             "projectsDescription": "Explore alguns dos meus trabalhos recentes e veja o que eu tenho construído. Navegue pelo carrossel para mais detalhes!",
-            "proj1Title": "Website Sanrio",
-            "proj1Desc": "Um site estático criado com HTML e CSS. Foi feito para experimentação e como base para testes de design visual e responsivo.",
+
+            // Projetos (Ordem do seu HTML)
             "proj2Title": "Eco-Vida Sustentabilidade",
             "proj2Desc": "Um sistema desktop interativo feito com Python e PySide6, projetado para incentivar hábitos sustentáveis e fornecer aos usuários feedback visual e recomendações personalizadas.",
             "proj3Title": "Tradutor Multilíngue",
             "proj3Desc": "Um aplicativo desktop tradutor desenvolvido em Python, utilizando a API MyMemory e uma interface elegante em PySide6 para fluxos de trabalho de tradução rápidos e intuitivos.",
-            "proj4Title": "Em Breve!",
+            "proj1Title": "Website Sanrio",
+            "proj1Desc": "Um site estático criado com HTML e CSS. Foi feito para experimentação e como base para testes de design visual e responsivo.",
+            "proj4Title": "Finance Tracker",
+            "proj4Desc": "Um tracker de finanças simples, bonito e eficiente. Chega de planilhas que mais pareciam gambiarras da era do gelo: aqui, você calcula, vê resultados e segue confiante no dia a dia.",
+            "proj5Title": "BookManagement API",
+            "proj5Desc": "Uma API RESTful para gerenciamento de livros, construída com Python e FastAPI. Demonstra arquitetura limpa, validação de dados com Pydantic e documentação automática.",
+            "proj6Title": "Em Breve!",
+            "proj6Desc": "...",
+
             "projBtnView": "Ver Projeto",
             "aboutTitle": "Sobre Mim",
             "aboutDesc1": "Sou graduando em Sistemas de Informação pela PUC Minas (2024-2027), com grande interesse em inteligência artificial e desenvolvimento de software.",
@@ -87,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = 'en'; 
 
     /**
-     * NOVO: Lógica para alternar o idioma
+     * Lógica para alternar o idioma
      */
     const langToggleBtn = document.getElementById('lang-toggle-btn');
 
@@ -277,4 +292,44 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    /**
+     * NOVA LÓGICA: Lightbox (Modal de Imagem)
+     */
+    const lightboxOverlay = document.getElementById('lightbox-overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCloseBtn = document.getElementById('lightbox-close-btn');
+    const projectImages = document.querySelectorAll('.carousel-slide .clickable-img');
+
+    if (lightboxOverlay && lightboxImg && lightboxCloseBtn && projectImages.length > 0) {
+        
+        // Função para abrir o lightbox
+        const openLightbox = (e) => {
+            const imgSrc = e.target.src;
+            lightboxImg.src = imgSrc;
+            lightboxOverlay.style.display = 'flex';
+        };
+
+        // Função para fechar o lightbox
+        const closeLightbox = () => {
+            lightboxOverlay.style.display = 'none';
+            lightboxImg.src = ''; // Limpa o src
+        };
+
+        // Adiciona evento de clique a cada imagem do projeto
+        projectImages.forEach(img => {
+            img.addEventListener('click', openLightbox);
+        });
+
+        // Adiciona evento de clique ao botão de fechar
+        lightboxCloseBtn.addEventListener('click', closeLightbox);
+
+        // Adiciona evento de clique ao overlay (para fechar ao clicar fora da imagem)
+        lightboxOverlay.addEventListener('click', (e) => {
+            if (e.target === lightboxOverlay) { // Verifica se o clique foi no fundo
+                closeLightbox();
+            }
+        });
+    }
+
 });
