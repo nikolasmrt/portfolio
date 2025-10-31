@@ -4,456 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikolas Martins - Software Developer Portfolio</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        
-        :root {
-            --background-dark: #121212; 
-            --card-background: #1e1e1e; 
-            --text-light: #e0e0e0;      
-            --text-muted: #a0a0a0;      
-            --accent-color: #00bcd4;    
-            --button-hover: #008ba3;    
-            --shadow-color: rgba(0, 0, 0, 0.6);
-            --border-color: rgba(255, 255, 255, 0.08);
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            background-color: var(--background-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden; 
-            scroll-behavior: smooth; 
-            background-image: url('wpp1.png'); 
-            background-size: cover; 
-            background-attachment: fixed; 
-            background-position: center; 
-            position: relative; 
-        }
-
-        
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); 
-            z-index: -1; 
-        }
-
-        
-        .section-padding {
-            padding: 80px 0; 
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        /* Header e Navegação (Menu) */
-        .header {
-            background-color: var(--card-background);
-            padding: 15px 0;
-            box-shadow: 0 2px 10px var(--shadow-color);
-            position: sticky; 
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8em;
-            font-weight: 700;
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .nav-menu ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-
-        .nav-menu ul li {
-            margin-left: 30px;
-        }
-
-        .nav-menu ul li a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1em;
-            padding: 5px 0;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-menu ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background-color: var(--accent-color);
-            left: 0;
-            bottom: -5px;
-            transition: width 0.3s ease;
-        }
-
-        .nav-menu ul li a:hover::after,
-        .nav-menu ul li a.active::after {
-            width: 100%;
-        }
-
-        .nav-menu ul li a:hover,
-        .nav-menu ul li a.active {
-            color: var(--accent-color);
-        }
-
-        
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--text-light);
-            font-size: 1.8em;
-            cursor: pointer;
-        }
-
-        /* Gerais */
-        section {
-            min-height: calc(100vh - 70px); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-
-        section:nth-of-type(even) {
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-
-        h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 3em;
-            color: var(--accent-color);
-            margin-bottom: 40px;
-            text-shadow: 0 2px 5px var(--shadow-color);
-            position: relative;
-            padding-bottom: 15px;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            width: 80px;
-            height: 4px;
-            background-color: var(--button-hover);
-            left: 50%;
-            transform: translateX(-50%);
-            bottom: 0;
-            border-radius: 2px;
-        }
-
-        p {
-            color: var(--text-muted);
-            font-size: 1.1em;
-            max-width: 700px;
-            margin: 0 auto 30px auto;
-        }
-
-        /* Home */
-        #home h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 4em;
-            color: var(--text-light);
-            margin-bottom: 15px;
-            animation: textFadeIn 1s ease-out forwards;
-        }
-
-        #home h1 span {
-            color: var(--accent-color);
-        }
-
-        #home p {
-            font-size: 1.5em;
-            color: var(--accent-green);
-            font-weight: 500;
-            animation: textFadeIn 1.2s ease-out forwards;
-            animation-delay: 0.2s;
-        }
-
-        @keyframes textFadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        
-        #sites .social-links {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 25px;
-            margin-top: 40px;
-        }
-
-        #sites .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 18px 35px;
-            background-color: var(--card-background);
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease;
-            box-shadow: 0 8px 20px var(--shadow-color);
-            min-width: 180px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: 1px solid var(--border-color);
-        }
-
-        #sites .social-links a:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px var(--shadow-color);
-            background-color: var(--accent-color);
-        }
-
-        #sites .social-links a i {
-            margin-right: 15px;
-            font-size: 1.5em;
-        }
-
-        
-        #projetos .carousel-container {
-            position: relative;
-            width: 80%;
-            max-width: 800px;
-            overflow: hidden;
-            margin: 40px auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px var(--shadow-color);
-            background-color: var(--card-background);
-            border: 1px solid var(--border-color);
-        }
-
-        .carousel-track {
-            display: flex;
-            transition: transform 0.0s ease-in-out; 
-        }
-
-        .carousel-slide {
-            min-width: 100%;
-            box-sizing: border-box;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-slide img {
-            max-width: 90%;
-            height: auto;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-        }
-
-        .carousel-slide h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--accent-color);
-            font-size: 1.8em;
-            margin-bottom: 10px;
-        }
-
-        .carousel-slide p {
-            color: var(--text-muted);
-            font-size: 1em;
-            max-width: 600px;
-        }
-
-        .carousel-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: var(--text-light);
-            border: none;
-            padding: 15px 10px;
-            cursor: pointer;
-            font-size: 1.5em;
-            border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            z-index: 10;
-        }
-
-        .carousel-nav-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .carousel-nav-btn.prev {
-            left: 10px;
-        }
-
-        .carousel-nav-btn.next {
-            right: 10px;
-        }
-
-       
-        #sobre .profile-picture {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%; 
-            object-fit: cover;
-            margin-bottom: 30px;
-            border: 5px solid var(--accent-color); 
-            box-shadow: 0 0 0 10px rgba(0, 188, 212, 0.2); 
-            transition: transform 0.3s ease;
-        }
-
-        #sobre .profile-picture:hover {
-            transform: scale(1.05);
-        }
-
-        #sobre p {
-            font-size: 1.15em;
-            max-width: 800px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        #sobre ul {
-            list-style: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        #sobre ul li {
-            background-color: var(--card-background);
-            padding: 10px 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            color: var(--accent-green);
-            font-weight: 500;
-            font-size: 1em;
-            border: 1px solid var(--border-color);
-        }
-
-
-        
-        @media (max-width: 768px) {
-            .header .container {
-                flex-direction: column;
-            }
-            .nav-menu {
-                display: none; 
-                width: 100%;
-                margin-top: 15px;
-            }
-            .nav-menu.active {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            .nav-menu ul {
-                flex-direction: column;
-            }
-            .nav-menu ul li {
-                margin: 10px 0;
-            }
-            .menu-toggle {
-                display: block; 
-            }
-
-            section {
-                padding: 60px 0;
-                min-height: auto; 
-            }
-
-            h1 {
-                font-size: 3em !important;
-            }
-            h2 {
-                font-size: 2.5em;
-            }
-            p {
-                font-size: 1em;
-            }
-            #sites .social-links a {
-                width: 80%;
-                min-width: unset;
-                padding: 15px 25px;
-            }
-            #projetos .carousel-container {
-                width: 95%;
-            }
-            .carousel-slide img {
-                max-width: 100%;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .portfolio-container {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 2.5em !important;
-            }
-            h2 {
-                font-size: 2em;
-                margin-bottom: 30px;
-            }
-            .subtitle {
-                font-size: 1em;
-            }
-            .social-links a {
-                font-size: 0.9em;
-            }
-            .carousel-slide h3 {
-                font-size: 1.5em;
-            }
-        }
-    </style>
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <a href="#home" class="logo">Portfolio</a>
+            <a href="#home" class="logo" data-key="navPortfolio">Portfolio</a>
             <button class="menu-toggle" aria-label="Abrir Menu">
                 <i class="fas fa-bars"></i>
             </button>
             <nav class="nav-menu">
                 <ul>
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#sites">Links</a></li>
-                    <li><a href="#projetos">Projects</a></li>
-                    <li><a href="#sobre">About Me</a></li>
+                    <li><a href="#home" class="active" data-key="navHome">Home</a></li>
+                    <li><a href="#sites" data-key="navLinks">Links</a></li>
+                    <li><a href="#projetos" data-key="navProjects">Projects</a></li>
+                    <li><a href="#sobre" data-key="navAbout">About Me</a></li>
+                    <li><button id="lang-toggle-btn">BR / EN</button></li>
                 </ul>
             </nav>
         </div>
@@ -461,26 +31,25 @@
 
     <section id="home" class="section-padding">
         <div class="container">
-            <h1>Hello! I'm <span>Nikolas</span></h1>
-            <p>Software Developer • Automation Specialist • Creative Technologist</p>
-            <p>Welcome to my digital space. Here you can explore my latest projects, access important links, and get to know more about my professional journey.</p>
-
+            <h1 data-key="homeTitle">Hello! I'm <span>Nikolas</span></h1>
+            <p class="subtitle" data-key="homeSubtitle">Software Developer • Automation Specialist • Creative Technologist</p>
+            <p data-key="homeDescription">Welcome to my digital space. Here you can explore my latest projects, access important links, and get to know more about my professional journey.</p>
         </div>
     </section>
 
     <section id="sites" class="section-padding">
         <div class="container">            
-            <h2>Connect With Me</h2>
-            <p>Follow me on social and professional platforms to stay updated and connect directly:</p>
+            <h2 data-key="sitesTitle">Connect With Me</h2>
+            <p data-key="sitesDescription">Follow me on social and professional platforms to stay updated and connect directly:</p>
             <div class="social-links">
-                <a href="https://www.instagram.com/nnk.mrt/" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
+                <a href="" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-instagram"></i> <span data-key="sitesBtnInsta">Instagram</span>
                 </a>
-                <a href="https://www.linkedin.com/in/nikolas-martins-de-oliveira-3482812b1/" target="_blank">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
+                <a href="https://www.linkedin.com/in/nikolas-martins-oliveira/" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i> <span data-key="sitesBtnLinkedin">LinkedIn</span>
                 </a>
-                <a href="https://github.com/nikolasmrt" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/nikolasmrt" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i> <span data-key="sitesBtnGithub">GitHub</span>
                 </a>
             </div>
         </div>
@@ -488,35 +57,56 @@
 
     <section id="projetos" class="section-padding">
         <div class="container">
-            <h2>My Projects</h2>
-            <p>Explore some of my recent work and see what I’ve been building. Navigate through the carousel for more details!</p>
+            <h2 data-key="projectsTitle">My Projects</h2>
+            <p data-key="projectsDescription">Explore some of my recent work and see what I’ve been building. Navigate through the carousel for more details!</p>
             <div class="carousel-container">
                 <div class="carousel-track">
                     <div class="carousel-slide">
-                        <img src="projeto1.png" alt="Sanrio Website">
-                        <h3>Sanrio Website</h3>
-                        <p>A static site created using HTML and CSS. It was crafted for experimentation and as a base for visual and responsive design testing.</p>
-                        <a href="https://nikolasmrt.github.io/sanrio-site/" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <img src="projeto1.png" alt="Sanrio Website" loading="lazy">
+                        <h3 data-key="proj1Title">Sanrio Website</h3>
+                        <p data-key="proj1Desc">A static site created using HTML and CSS. It was crafted for experimentation and as a base for visual and responsive design testing.</p>
+                        <a href="https://nikolasmrt.github.io/sanrio-site/" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                           <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                     <div class="carousel-slide">
-                        <img src="projeto2.png" alt="Eco-Life Sustainability">
-                        <h3>Eco-Life Sustainability</h3>
-                        <p>An interactive desktop system built with Python and PySide6, designed to encourage sustainable habits and provide users with visual feedback and personalized recommendations.</p>
-                        <a href="https://github.com/nikolasmrt/projeto-ecovida-sustentabilidade" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <img src="projeto2.png" alt="Eco-Life Sustainability" loading="lazy">
+                        <h3 data-key="proj2Title">Eco-Life Sustainability</h3>
+                        <p data-key="proj2Desc">An interactive desktop system built with Python and PySide6, designed to encourage sustainable habits and provide users with visual feedback and personalized recommendations.</p>
+                        <a href="https://github.com/nikolasmrt/projeto-ecovida-sustentabilidade" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                            <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                     <div class="carousel-slide">
-                        <img src="projeto3.png" alt="Translator App">
-                        <h3>Multilingual Translator</h3>
-                        <p>A cross-language translator desktop app developed in Python, utilizing the MyMemory API and a sleek PySide6 interface for quick and intuitive translation workflows.</p>
-                        <a href="https://github.com/nikolasmrt/tradutor-de-linguagens" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <img src="projeto3.png" alt="Translator App" loading="lazy">
+                        <h3 data-key="proj3Title">Multilingual Translator</h3>
+                        <p data-key="proj3Desc">A cross-language translator desktop app developed in Python, utilizing the MyMemory API and a sleek PySide6 interface for quick and intuitive translation workflows.</p>
+                        <a href="https://github.com/nikolasmrt/tradutor-de-linguagens" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                            <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
                     <div class="carousel-slide">
-                        <img src="#" alt="">
-                        <h3>Coming Soon!</h3>
+                        <h3 data-key="proj4Title">Coming Soon!</h3>
                         <p>...</p>
-                        <a href="#" target="_blank" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">View Project <i class="fas fa-external-link-alt"></i></a>
+                        <a href="#" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                            <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
+                                        <div class="carousel-slide">
+                        <h3 data-key="proj4Title">Coming Soon!</h3>
+                        <p>...</p>
+                        <a href="#" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                            <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
                     </div>
+                                        <div class="carousel-slide">
+                        <h3 data-key="proj4Title">Coming Soon!</h3>
+                        <p>...</p>
+                        <a href="#" target="_blank" rel="noopener noreferrer" style="color: var(--accent-color); text-decoration: none; font-weight: 600; margin-top: 15px;">
+                            <span data-key="projBtnView">View Project</span> <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </div>
                 <button class="carousel-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
                 <button class="carousel-nav-btn next"><i class="fas fa-chevron-right"></i></button>
             </div>
@@ -525,149 +115,26 @@
 
     <section id="sobre" class="section-padding">
         <div class="container">
-            <h2>About Me</h2>
-            <img src="perfil.jpg" alt="Profile Picture" class="profile-picture">
-            <p>I'm a passionate software developer who loves building solutions that connect automation, user experience, and real-world impact. My work spans from frontend design to backend logic and process automation.</p>
-            <p>I believe in writing clean, maintainable code and building products that users truly enjoy using. I'm self-driven, always learning, and love working on projects that challenge my creativity and technical skills.</p>
-            <p>Key Skills:</p>
+            <h2 data-key="aboutTitle">About Me</h2>
+            <img src="perfil.jpg" alt="Profile Picture" class="profile-picture" loading="lazy">
+            
+            <p data-key="aboutDesc1">I am an Information Systems undergraduate student at PUC Minas (2024-2027), with a strong passion for artificial intelligence and software development.</p>
+            <p data-key="aboutDesc2">I have an analytical and reflective profile, but I am also highly collaborative and enjoy learning from those around me.</p>
+            <p data-key="aboutDesc3">I am driven to unite technology, creativity, and purpose, often exploring related themes such as cinematography, nature, and sustainability.</p>
+            
+            <p data-key="aboutSkillsTitle">Key Skills:</p>
             <ul>
-                <li>HTML5 & CSS3</li>
-                <li>JavaScript (ES6+)</li>
-                <li>React.js</li>
-                <li>Node.js</li>
-                <li>Python & Automation</li>
-                <li>SQL</li>
-                <li>Artificial Intelligence (AI)</li>
-                <li>Version Control (Git & GitHub)</li>
+                <li data-key="skillPy">Python, Django, Flask</li>
+                <li data-key="skillDb">SQL/NoSQL</li>
+                <li data-key="skillGit">Git & GitHub</li>
+                <li data-key="skillNet">.NET & C#</li>
+                <li data-key="skillWeb">HTML5 & CSS3</li>
+                <li data-key="skillJs">JavaScript</li>
+                <li data-key="skillAi">Artificial Intelligence (AI)</li>
             </ul>
         </div>
     </section>
 
-    <script>
-       
-        document.querySelectorAll('.nav-menu a').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault(); 
-
-                
-                document.querySelectorAll('.nav-menu a').forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                this.classList.add('active');
-
-                
-                const navMenu = document.querySelector('.nav-menu');
-                if (navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    document.querySelector('.menu-toggle i').classList.remove('fa-times');
-                    document.querySelector('.menu-toggle i').classList.add('fa-bars');
-                }
-
-                const targetId = this.getAttribute('href'); 
-                const targetSection = document.querySelector(targetId);
-
-                
-                window.scrollTo({
-                    top: targetSection.offsetTop - (document.querySelector('.header').offsetHeight), 
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        
-        const sections = document.querySelectorAll('section');
-        const navLi = document.querySelectorAll('.nav-menu ul li a');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                
-                if (pageYOffset >= sectionTop - document.querySelector('.header').offsetHeight - 50) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLi.forEach(a => {
-                a.classList.remove('active');
-                if (a.getAttribute('href').includes(current)) {
-                    a.classList.add('active');
-                }
-            });
-        });
-
-
-        
-        const carouselTrack = document.querySelector('.carousel-track');
-        const carouselSlides = Array.from(carouselTrack.children);
-        const nextButton = document.querySelector('.carousel-nav-btn.next');
-        const prevButton = document.querySelector('.carousel-nav-btn.prev');
-
-        let slideWidth = carouselSlides[0].getBoundingClientRect().width;
-        let slideIndex = 0;
-
-        
-        const setSlidePosition = (slide, index) => {
-            slide.style.left = slideWidth * index + 'px';
-        };
-        carouselSlides.forEach(setSlidePosition);
-
-
-        window.addEventListener('resize', () => {
-            slideWidth = carouselSlides[0].getBoundingClientRect().width;
-            carouselSlides.forEach(setSlidePosition);
-            moveToSlide(slideIndex); 
-        });
-
-
-        const moveToSlide = (targetIndex) => {
-            if (targetIndex < 0) {
-                targetIndex = carouselSlides.length - 1; 
-            } else if (targetIndex >= carouselSlides.length) {
-                targetIndex = 0; 
-            }
-
-            carouselTrack.style.transition = 'transform 0.4s ease-in-out'; 
-            carouselTrack.style.transform = 'translateX(-' + targetIndex * slideWidth + 'px)';
-            slideIndex = targetIndex;
-        };
-
-        nextButton.addEventListener('click', () => {
-            moveToSlide(slideIndex + 1);
-        });
-
-        prevButton.addEventListener('click', () => {
-            moveToSlide(slideIndex - 1);
-        });
-
-        
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') {
-                moveToSlide(slideIndex + 1);
-            } else if (e.key === 'ArrowLeft') {
-                moveToSlide(slideIndex - 1);
-            }
-        });
-
-       
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        menuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            const icon = menuToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-times');
-            } else {
-                icon.classList.remove('fa-times');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-    </script>
+    <script src="script.js" defer></script>
 </body>
 </html>
