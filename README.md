@@ -1,62 +1,45 @@
 # 🌐 Nikolas Martins — Developer Portfolio
 
-Welcome to my personal developer portfolio!  
-This project showcases my skills, projects, and professional identity as a software developer with a passion for automation, clean architecture, and impactful solutions.
+Bem-vindo ao meu portfólio pessoal de desenvolvedor!  
+Este projeto mostra minhas habilidades, projetos e identidade profissional como um desenvolvedor de software com paixão por automação, arquitetura limpa e soluções de impacto.
 
-## 🔎 About This Project
+## 🚀 Demo Ao Vivo
 
-This is a responsive and visually elegant personal website built entirely with **HTML5**, **CSS3**, and **JavaScript**. It highlights my latest projects, professional links, and key skills.
+Você pode acessar o portfólio em:
 
-> 💡 The entire content was written in English with a professional tone, without references to formal education — focused on practical results, experience, and self-driven learning.
+**[https://portfolio-seven-bice-93.vercel.app/](https://portfolio-seven-bice-93.vercel.app/)** > Ou abra o `index.html` no seu navegador localmente.
 
-## ✨ Live Demo
+## 🛠️ Tecnologias Utilizadas
 
-You can access the portfolio at:
-
-**[https://portfolio-seven-bice-93.vercel.app/](https://portfolio-seven-bice-93.vercel.app/)**  
-> Or open `index.html` in your browser locally.
-
-## 📁 Project Structure
-
-📁 portfolio
-├── index.html # Main HTML file
-├── projeto1.png # Screenshot: Sanrio Project
-├── projeto2.png # Screenshot: Eco-Life System
-├── projeto3.png # Screenshot: Translator App
-├── perfil.jpg # Profile picture
-└── wpp1.png # Background wallpaper
-
-
-## 🛠️ Technologies Used
-
-- **HTML5 & CSS3** (Semantic, Responsive, Modern UI)
-- **Vanilla JavaScript** (Carousel, Navigation, UX Enhancements)
+- **HTML5 & CSS3** (Semântico, Responsivo, UI Moderna)
+- **JavaScript (Vanilla)** (i18n, Lightbox, Player de Áudio, Carrossel)
 - **Google Fonts** & **FontAwesome Icons**
 
-## 🚀 Features
+## ✨ Funcionalidades
 
-- Fully responsive layout with smooth navigation
-- Interactive project carousel
-- Professional profile section
-- Clean and minimalist dark theme
-- Easy to update and expand
+- Layout totalmente responsivo com navegação suave.
+- **Internacionalização (i18n):** Site completo em Inglês e Português (BR) com animação de *fade* na troca.
+- **Carrossel de Projetos:** Navegação interativa pelos meus trabalhos.
+- **Lightbox de Imagem:** Zoom nas imagens dos projetos para melhor visualização.
+- **Música de Fundo:** Player com controle de play/pause e volume baixo por padrão.
+- Tema *dark* limpo e profissional.
 
-## 📌 Projects Included
+## 📌 Projetos Incluídos
 
-| Project                 | Description |
-|------------------------|-------------|
-| **Sanrio Website**     | Static website built with HTML/CSS for learning layout and design. |
-| **Eco-Life**           | Python desktop app for tracking sustainable habits. |
-| **Multilingual Translator** | Translation tool using PySide6 and MyMemory API. |
+| Projeto | Descrição |
+| --- | --- |
+| **Eco-Life Sustentabilidade** | App desktop em Python (PySide6) para rastrear hábitos sustentáveis. |
+| **Tradutor Multilíngue** | Ferramenta de tradução usando PySide6 e a API MyMemory. |
+| **Sanrio Website** | Website estático (HTML/CSS) para aprendizado de layout. |
+| **Finance Tracker** | App web simples (HTML/CSS/JS) para rastreamento de finanças. |
+| **BookManagement API** | API RESTful em Python (FastAPI) para gerenciamento de livros. |
+| **Em Breve!** | Meu próximo grande projeto. |
 
-## 🤝 Let's Connect
-
-You can find me on:
+## 🤝 Vamos nos Conectar
 
 - [GitHub](https://github.com/nikolasmrt)
-- [LinkedIn](https://www.linkedin.com/in/nikolas-martins-de-oliveira-3482812b1/)
-
+- [LinkedIn](https://www.linkedin.com/in/nikolas-martins-oliveira/)
 
 ---
 
-> Built with 💻, creativity, and purpose by Nikolas Martins.
+> Construído com 💻, criatividade e propósito por Nikolas Martins.
