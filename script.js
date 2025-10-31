@@ -2,12 +2,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /**
-     * NOVO: Dicionário de Traduções (i18n)
-     * ATUALIZADO com 6 projetos
+     * Dicionário de Traduções (i18n)
+     * ATUALIZADO com chaves de acessibilidade
      */
     const translations = {
         "en": {
             "pageTitle": "Nikolas Martins - Software Developer Portfolio",
+            "menuToggleLabel": "Open Menu",
+            "carouselPrevLabel": "Previous Slide",
+            "carouselNextLabel": "Next Slide",
+            "audioTogglePlay": "Play",
+            "audioTogglePause": "Pause music",
             "navPortfolio": "Portfolio",
             "navHome": "Home",
             "navLinks": "Links",
@@ -22,8 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "sitesBtnGithub": "GitHub",
             "projectsTitle": "My Projects",
             "projectsDescription": "Explore some of my recent work and see what I’ve been building. Navigate through the carousel for more details!",
-            
-            // Projetos (Ordem do seu HTML)
             "proj2Title": "Eco-Life Sustainability",
             "proj2Desc": "An interactive desktop system built with Python and PySide6, designed to encourage sustainable habits and provide users with visual feedback and personalized recommendations.",
             "proj3Title": "Multilingual Translator",
@@ -36,7 +39,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "proj5Desc": "A RESTful API for book management, built with Python and FastAPI. It demonstrates clean architecture, data validation with Pydantic, and automatic API documentation.",
             "proj6Title": "Coming Soon!",
             "proj6Desc": "...",
-
             "projBtnView": "View Project",
             "aboutTitle": "About Me",
             "aboutDesc1": "I am an Information Systems undergraduate student at PUC Minas (2024-2027), with a strong passion for artificial intelligence and software development.",
@@ -53,6 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "pt": {
             "pageTitle": "Nikolas Martins - Portfólio de Desenvolvedor",
+            "menuToggleLabel": "Abrir Menu",
+            "carouselPrevLabel": "Slide Anterior",
+            "carouselNextLabel": "Próximo Slide",
+            "audioTogglePlay": "Tocar música",
+            "audioTogglePause": "Pausar música",
             "navPortfolio": "Portfólio",
             "navHome": "Início",
             "navLinks": "Links",
@@ -67,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "sitesBtnGithub": "GitHub",
             "projectsTitle": "Meus Projetos",
             "projectsDescription": "Explore alguns dos meus trabalhos recentes e veja o que eu tenho construído. Navegue pelo carrossel para mais detalhes!",
-
-            // Projetos (Ordem do seu HTML)
             "proj2Title": "Eco-Vida Sustentabilidade",
             "proj2Desc": "Um sistema desktop interativo feito com Python e PySide6, projetado para incentivar hábitos sustentáveis e fornecer aos usuários feedback visual e recomendações personalizadas.",
             "proj3Title": "Tradutor Multilíngue",
@@ -81,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
             "proj5Desc": "Uma API RESTful para gerenciamento de livros, construída com Python e FastAPI. Demonstra arquitetura limpa, validação de dados com Pydantic e documentação automática.",
             "proj6Title": "Em Breve!",
             "proj6Desc": "...",
-
             "projBtnView": "Ver Projeto",
             "aboutTitle": "Sobre Mim",
             "aboutDesc1": "Sou graduando em Sistemas de Informação pela PUC Minas (2024-2027), com grande interesse em inteligência artificial e desenvolvimento de software.",
@@ -102,62 +106,96 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentLang = 'en'; 
 
     /**
-     * Lógica para alternar o idioma
+     * Lógica para alternar o idioma (COM ANIMAÇÃO)
      */
     const langToggleBtn = document.getElementById('lang-toggle-btn');
+    const elementsToTranslate = document.querySelectorAll('[data-key]');
+    const animationDuration = 300; // Duração em ms (deve ser igual ao CSS)
 
     const updateLanguage = (lang) => {
-        // Atualiza o atributo 'lang' da tag <html>
-        document.documentElement.lang = lang;
         
-        // Atualiza o título da página
-        document.title = translations[lang].pageTitle;
-        
-        // Itera sobre todos os elementos com 'data-key'
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.dataset.key;
-            if (translations[lang][key]) {
-                // Usa .innerHTML para o título que contém <span>
-                if (key === 'homeTitle') {
-                    element.innerHTML = translations[lang][key];
-                } else {
-                    element.textContent = translations[lang][key];
-                }
-            }
+        // 1. Inicia o "Fade Out"
+        elementsToTranslate.forEach(element => {
+            element.classList.add('text-fading');
         });
+
+        // 2. Espera a animação de fade-out terminar
+        setTimeout(() => {
+            // 3. Atualiza todo o texto
+            document.documentElement.lang = lang;
+            document.title = translations[lang].pageTitle;
+            
+            elementsToTranslate.forEach(element => {
+                const key = element.dataset.key;
+                if (translations[lang][key]) {
+                    // Atualiza o texto
+                    if (key === 'homeTitle') {
+                        element.innerHTML = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+
+                    // Atualiza também os aria-labels (para acessibilidade)
+                    if (element.tagName === 'BUTTON' || element.tagName === 'A') {
+                        if (key === 'menuToggleLabel' || key === 'carouselPrevLabel' || key === 'carouselNextLabel' || key.startsWith('audioToggle')) {
+                            element.setAttribute('aria-label', translations[lang][key]);
+                        }
+                    }
+                }
+            });
+
+            // 4. Inicia o "Fade In"
+            elementsToTranslate.forEach(element => {
+                element.classList.remove('text-fading');
+            });
+
+        }, animationDuration); // Espera a transição de 300ms
     };
 
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', () => {
-            // Alterna o idioma
             currentLang = currentLang === 'en' ? 'pt' : 'en';
             updateLanguage(currentLang);
         });
     }
 
-    // Define o idioma inicial ao carregar a página
-    updateLanguage(currentLang);
+    // Define o idioma inicial (sem animação na primeira carga)
+    const initialLoadUpdate = (lang) => {
+        document.documentElement.lang = lang;
+        document.title = translations[lang].pageTitle;
+        elementsToTranslate.forEach(element => {
+            const key = element.dataset.key;
+            if (translations[lang][key]) {
+                if (key === 'homeTitle') {
+                    element.innerHTML = translations[lang][key];
+                } else {
+                    element.textContent = translations[lang][key];
+                }
+                // Define os aria-labels iniciais
+                if (element.tagName === 'BUTTON' || element.tagName === 'A') {
+                    if (key === 'menuToggleLabel' || key === 'carouselPrevLabel' || key === 'carouselNextLabel' || key.startsWith('audioToggle')) {
+                        element.setAttribute('aria-label', translations[lang][key]);
+                    }
+                }
+            }
+        });
+    };
+    initialLoadUpdate(currentLang);
 
 
     /**
      * Lógica para o Menu de Navegação (Scroll Suave e Ativação)
      */
     const header = document.querySelector('.header');
-    const headerHeight = header ? header.offsetHeight : 70; // Fallback
+    const headerHeight = header ? header.offsetHeight : 70; 
 
     document.querySelectorAll('.nav-menu a').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault(); 
-
-            // Remove 'active' de todos os links
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 link.classList.remove('active');
             });
-            
-            // Adiciona 'active' ao link clicado
             this.classList.add('active');
-
-            // Fecha o menu mobile (hamburger) se estiver aberto
             const navMenu = document.querySelector('.nav-menu');
             const menuToggleIcon = document.querySelector('.menu-toggle i');
             if (navMenu && navMenu.classList.contains('active')) {
@@ -165,14 +203,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (menuToggleIcon) {
                     menuToggleIcon.classList.remove('fa-times');
                     menuToggleIcon.classList.add('fa-bars');
+                    // Atualiza o aria-label ao fechar
+                    document.querySelector('.menu-toggle').setAttribute('aria-label', translations[currentLang]['menuToggleLabel']);
                 }
             }
-
             const targetId = this.getAttribute('href'); 
             const targetSection = document.querySelector(targetId);
-
             if (targetSection) {
-                // Rola suavemente para a seção com o offset do header
                 window.scrollTo({
                     top: targetSection.offsetTop - headerHeight, 
                     behavior: 'smooth'
@@ -191,13 +228,10 @@ document.addEventListener('DOMContentLoaded', () => {
         let current = '';
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            
-            // Verifica a posição da rolagem contra o topo da seção com offset
             if (window.pageYOffset >= sectionTop - headerHeight - 50) {
                 current = section.getAttribute('id');
             }
         });
-
         navLinks.forEach(a => {
             a.classList.remove('active');
             if (a.getAttribute('href').includes(current)) {
@@ -216,50 +250,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const nextButton = document.querySelector('.carousel-nav-btn.next');
         const prevButton = document.querySelector('.carousel-nav-btn.prev');
 
-        if (carouselSlides.length === 0) return; // Não faz nada se não houver slides
+        if (carouselSlides.length === 0) return; 
 
         let slideWidth = carouselSlides[0].getBoundingClientRect().width;
         let slideIndex = 0;
 
-        // Função principal para mover o carrossel
         const moveToSlide = (targetIndex) => {
-            // Loop do carrossel (do último para o primeiro e vice-versa)
             if (targetIndex < 0) {
                 targetIndex = carouselSlides.length - 1; 
             } else if (targetIndex >= carouselSlides.length) {
                 targetIndex = 0; 
             }
-
-            // Define a transição e move o track
             carouselTrack.style.transition = 'transform 0.4s ease-in-out'; 
             carouselTrack.style.transform = 'translateX(-' + targetIndex * slideWidth + 'px)';
             slideIndex = targetIndex;
         };
 
-        // Recalcula a largura do slide ao redimensionar a janela
         window.addEventListener('resize', () => {
             slideWidth = carouselSlides[0].getBoundingClientRect().width;
-            // Move para o slide atual sem transição para evitar quebra
             carouselTrack.style.transition = 'none';
-            // Recalcula a posição
             carouselTrack.style.transform = 'translateX(-' + slideIndex * slideWidth + 'px)';
         });
 
-        // Event Listeners dos botões
         nextButton.addEventListener('click', () => {
             moveToSlide(slideIndex + 1);
         });
-
         prevButton.addEventListener('click', () => {
             moveToSlide(slideIndex - 1);
         });
-
-        // (Opcional) Navegação por Teclas
         document.addEventListener('keydown', (e) => {
-            // Só ativa se o carrossel estiver visível (aproximação)
             const carouselRect = carouselTrack.getBoundingClientRect();
             const isInView = carouselRect.top < window.innerHeight && carouselRect.bottom >= 0;
-
             if (isInView) {
                 if (e.key === 'ArrowRight') {
                     moveToSlide(slideIndex + 1);
@@ -279,22 +300,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
-            
             const icon = menuToggle.querySelector('i');
             if (icon) {
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
+                    // Atualiza aria-label para "Fechar Menu" (precisaria adicionar no translations)
                 } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
+                    // Atualiza aria-label para "Abrir Menu"
+                    menuToggle.setAttribute('aria-label', translations[currentLang]['menuToggleLabel']);
                 }
             }
         });
     }
 
     /**
-     * NOVA LÓGICA: Lightbox (Modal de Imagem)
+     * LÓGICA: Lightbox (Modal de Imagem)
      */
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -302,34 +325,51 @@ document.addEventListener('DOMContentLoaded', () => {
     const projectImages = document.querySelectorAll('.carousel-slide .clickable-img');
 
     if (lightboxOverlay && lightboxImg && lightboxCloseBtn && projectImages.length > 0) {
-        
-        // Função para abrir o lightbox
         const openLightbox = (e) => {
-            const imgSrc = e.target.src;
-            lightboxImg.src = imgSrc;
+            lightboxImg.src = e.target.src;
             lightboxOverlay.style.display = 'flex';
         };
-
-        // Função para fechar o lightbox
         const closeLightbox = () => {
             lightboxOverlay.style.display = 'none';
-            lightboxImg.src = ''; // Limpa o src
+            lightboxImg.src = ''; 
         };
-
-        // Adiciona evento de clique a cada imagem do projeto
         projectImages.forEach(img => {
             img.addEventListener('click', openLightbox);
         });
-
-        // Adiciona evento de clique ao botão de fechar
         lightboxCloseBtn.addEventListener('click', closeLightbox);
-
-        // Adiciona evento de clique ao overlay (para fechar ao clicar fora da imagem)
         lightboxOverlay.addEventListener('click', (e) => {
-            if (e.target === lightboxOverlay) { // Verifica se o clique foi no fundo
+            if (e.target === lightboxOverlay) { 
                 closeLightbox();
             }
         });
     }
 
+    /**
+     * NOVA LÓGICA: Controle de Áudio
+     */
+    const audio = document.getElementById('bg-music');
+    const audioToggleBtn = document.getElementById('audio-toggle-btn');
+
+    if (audio && audioToggleBtn) {
+        const audioIcon = audioToggleBtn.querySelector('i');
+
+        audioToggleBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play().catch(error => {
+                    // O play() pode falhar se o usuário não interagiu com a página
+                    console.warn("Audio play failed. User interaction might be required.", error);
+                });
+                audioIcon.classList.remove('fa-volume-mute');
+                audioIcon.classList.add('fa-volume-up');
+                audioToggleBtn.setAttribute('data-key', 'audioTogglePause');
+                audioToggleBtn.setAttribute('aria-label', translations[currentLang]['audioTogglePause']);
+            } else {
+                audio.pause();
+                audioIcon.classList.remove('fa-volume-up');
+                audioIcon.classList.add('fa-volume-mute');
+                audioToggleBtn.setAttribute('data-key', 'audioTogglePlay');
+                audioToggleBtn.setAttribute('aria-label', translations[currentLang]['audioTogglePlay']);
+            }
+        });
+    }
 });

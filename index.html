@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nikolas Martins - Software Developer Portfolio</title>
     
+    <meta name="description" content="Portfólio de Nikolas Martins, Desenvolvedor de Software focado em Python, IA e Automação. Conheça meus projetos e habilidades.">
+    <meta property="og:title" content="Nikolas Martins - Software Developer Portfolio">
+    <meta property="og:description" content="Desenvolvedor focado em Python, IA e Automação. Conheça meus projetos.">
+    <meta property="og:image" content="https://nikolasmrt.github.io/perfil.png"> <meta property="og:url" content="https://nikolasmrt.github.io/"> <meta property="og:type" content="website">
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -15,7 +20,7 @@
     <header class="header">
         <div class="container">
             <a href="#home" class="logo" data-key="navPortfolio">Portfolio</a>
-            <button class="menu-toggle" aria-label="Abrir Menu">
+            <button class="menu-toggle" aria-label="Abrir Menu" data-key="menuToggleLabel">
                 <i class="fas fa-bars"></i>
             </button>
             <nav class="nav-menu">
@@ -32,7 +37,10 @@
 
     <section id="home" class="section-padding">
         <div class="container">
-            <h1 data-key="homeTitle">Hello! I'm <span>Nikolas</span></h1>
+            <h1>
+                <span data-key="homeTitlePre">Hello! I'm </span>
+                <span>Nikolas</span>
+            </h1>
             <p class="subtitle" data-key="homeSubtitle">Software Developer • Automation Specialist • Creative Technologist</p>
             <p data-key="homeDescription">Welcome to my digital space. Here you can explore my latest projects, access important links, and get to know more about my professional journey.</p>
         </div>
@@ -106,8 +114,8 @@
                         </a>
                     </div>
                 </div>
-                <button class="carousel-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="carousel-nav-btn next"><i class="fas fa-chevron-right"></i></button>
+                <button class="carousel-nav-btn prev" aria-label="Slide Anterior" data-key="carouselPrevLabel"><i class="fas fa-chevron-left"></i></button>
+                <button class="carousel-nav-btn next" aria-label="Próximo Slide" data-key="carouselNextLabel"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
     </section>
@@ -138,6 +146,11 @@
         <span id="lightbox-close-btn">&times;</span>
         <img id="lightbox-img" src="" alt="Projeto em zoom">
     </div>
+
+    <audio id="bg-music" src="sua-musica.mp3" loop preload="auto" autoplay></audio>
+    <button id="audio-toggle-btn" aria-label="Tocar música" data-key="audioTogglePlay">
+        <i class="fas fa-volume-mute"></i>
+    </button>
 
     <script src="script.js" defer></script>
 </body>

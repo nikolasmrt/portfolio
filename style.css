@@ -118,7 +118,7 @@ body::before {
     color: var(--accent-color);
 }
 
-/* NOVO: Estilo para o botão de idioma */
+/* Estilo para o botão de idioma */
 #lang-toggle-btn {
     background: none;
     border: 1px solid var(--accent-color);
@@ -290,7 +290,7 @@ p {
     border: 1px solid var(--border-color);
 }
 
-/* NOVO: Adiciona o cursor de clique nas imagens do carrossel */
+/* Adiciona o cursor de clique nas imagens do carrossel */
 .carousel-slide img.clickable-img {
     cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -351,7 +351,8 @@ p {
     object-fit: cover;
     margin-bottom: 30px;
     border: 5px solid var(--accent-color); 
-    box-shadow: 0 0 0 10px rgba(115, 120, 129, 0.2); /* Corrigido para usar a cor --accent-color (cinza) */
+    /* BUG CORRIGIDO: Cor trocada para usar o --accent-color (cinza) */
+    box-shadow: 0 0 0 10px rgba(115, 120, 129, 0.2); 
     transition: transform 0.3s ease;
 }
 
@@ -463,8 +464,7 @@ p {
 }
 
 
-/* NOVOS ESTILOS PARA O LIGHTBOX (MODAL DE IMAGEM) 
-*/
+/* ESTILOS PARA O LIGHTBOX (MODAL DE IMAGEM) */
 #lightbox-overlay {
     display: none; /* Oculto por padrão */
     position: fixed;
@@ -503,4 +503,42 @@ p {
 
 #lightbox-close-btn:hover {
     color: var(--accent-color);
+}
+
+/* NOVOS ESTILOS: ANIMAÇÃO DE IDIOMA E BOTÃO DE ÁUDIO 
+*/
+
+/* Animação de Fade para troca de idioma */
+[data-key] {
+    transition: opacity 0.3s ease-in-out;
+}
+
+.text-fading {
+    opacity: 0;
+}
+
+/* Botão de Controle de Áudio */
+#audio-toggle-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1001; /* Acima do header sticky */
+    background-color: var(--card-background);
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 1.2em;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#audio-toggle-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--card-background);
 }
