@@ -203,6 +203,12 @@ p {
     color: var(--accent-color);
 }
 
+/* O <span> com data-key="homeTitlePre" será animado */
+#home h1 span[data-key="homeTitlePre"] {
+    color: var(--text-light);
+}
+
+
 #home .subtitle {
     font-size: 1.5em;
     color: var(--text-light); 

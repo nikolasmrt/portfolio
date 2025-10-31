@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /**
      * Dicionário de Traduções (i18n)
-     * ATUALIZADO com chaves de acessibilidade
+     * CORRIGIDO: 'homeTitle' -> 'homeTitlePre' para animação suave
      */
     const translations = {
         "en": {
@@ -11,14 +11,17 @@ document.addEventListener('DOMContentLoaded', () => {
             "menuToggleLabel": "Open Menu",
             "carouselPrevLabel": "Previous Slide",
             "carouselNextLabel": "Next Slide",
-            "audioTogglePlay": "Play",
+            "audioTogglePlay": "Play music",
             "audioTogglePause": "Pause music",
             "navPortfolio": "Portfolio",
             "navHome": "Home",
             "navLinks": "Links",
             "navProjects": "Projects",
             "navAbout": "About Me",
-            "homeTitle": "Hello! I'm <span>Nikolas</span>",
+            
+            // CORREÇÃO: Esta chave agora mira o <span> correto
+            "homeTitlePre": "Hello! I'm ", 
+            
             "homeSubtitle": "Software Developer • Automation Specialist • Creative Technologist",
             "homeDescription": "Welcome to my digital space. Here you can explore my latest projects, access important links, and get to know more about my professional journey.",
             "sitesTitle": "Connect With Me",
@@ -65,7 +68,10 @@ document.addEventListener('DOMContentLoaded', () => {
             "navLinks": "Links",
             "navProjects": "Projetos",
             "navAbout": "Sobre Mim",
-            "homeTitle": "Olá! Eu sou o <span>Nikolas</span>",
+
+            // CORREÇÃO: Esta chave agora mira o <span> correto
+            "homeTitlePre": "Olá! Eu sou o ",
+
             "homeSubtitle": "Desenvolvedor de Software • Especialista em Automação • Tecnologista Criativo",
             "homeDescription": "Bem-vindo ao meu espaço digital. Aqui você pode explorar meus projetos mais recentes, acessar links importantes e conhecer mais sobre minha jornada profissional.",
             "sitesTitle": "Conecte-se Comigo",
@@ -105,15 +111,47 @@ document.addEventListener('DOMContentLoaded', () => {
     // Define o idioma inicial
     let currentLang = 'en'; 
 
-    /**
-     * Lógica para alternar o idioma (COM ANIMAÇÃO)
-     */
     const langToggleBtn = document.getElementById('lang-toggle-btn');
     const elementsToTranslate = document.querySelectorAll('[data-key]');
     const animationDuration = 300; // Duração em ms (deve ser igual ao CSS)
 
-    const updateLanguage = (lang) => {
+    // Lista de chaves que afetam APENAS o atributo aria-label
+    // CORREÇÃO: Removido 'homeTitle' desta lógica
+    const ariaOnlyKeys = [
+        'menuToggleLabel', 
+        'carouselPrevLabel', 
+        'carouselNextLabel', 
+        'audioTogglePlay', 
+        'audioTogglePause'
+    ];
+
+    /**
+     * CORRIGIDA: Função que aplica as traduções (usada na carga inicial)
+     * Esta lógica está mais limpa e corrige o bug de apagar ícones.
+     */
+    const applyTranslations = (lang) => {
+        document.documentElement.lang = lang;
+        document.title = translations[lang].pageTitle;
         
+        elementsToTranslate.forEach(element => {
+            const key = element.dataset.key;
+            if (translations[lang][key]) {
+                
+                if (ariaOnlyKeys.includes(key)) {
+                    // 1. Apenas atualiza o aria-label
+                    element.setAttribute('aria-label', translations[lang][key]);
+                } else {
+                    // 2. Atualiza o texto (agora seguro para todos)
+                    element.textContent = translations[lang][key];
+                }
+            }
+        });
+    };
+
+    /**
+     * CORRIGIDA: Função que anima a troca de idioma
+     */
+    const updateLanguage = (lang) => {
         // 1. Inicia o "Fade Out"
         elementsToTranslate.forEach(element => {
             element.classList.add('text-fading');
@@ -121,28 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // 2. Espera a animação de fade-out terminar
         setTimeout(() => {
-            // 3. Atualiza todo o texto
-            document.documentElement.lang = lang;
-            document.title = translations[lang].pageTitle;
-            
-            elementsToTranslate.forEach(element => {
-                const key = element.dataset.key;
-                if (translations[lang][key]) {
-                    // Atualiza o texto
-                    if (key === 'homeTitle') {
-                        element.innerHTML = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
-
-                    // Atualiza também os aria-labels (para acessibilidade)
-                    if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-                        if (key === 'menuToggleLabel' || key === 'carouselPrevLabel' || key === 'carouselNextLabel' || key.startsWith('audioToggle')) {
-                            element.setAttribute('aria-label', translations[lang][key]);
-                        }
-                    }
-                }
-            });
+            // 3. Aplica todas as traduções
+            applyTranslations(lang);
 
             // 4. Inicia o "Fade In"
             elementsToTranslate.forEach(element => {
@@ -152,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, animationDuration); // Espera a transição de 300ms
     };
 
+    // Evento de clique do botão de idioma
     if (langToggleBtn) {
         langToggleBtn.addEventListener('click', () => {
             currentLang = currentLang === 'en' ? 'pt' : 'en';
@@ -159,28 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Define o idioma inicial (sem animação na primeira carga)
-    const initialLoadUpdate = (lang) => {
-        document.documentElement.lang = lang;
-        document.title = translations[lang].pageTitle;
-        elementsToTranslate.forEach(element => {
-            const key = element.dataset.key;
-            if (translations[lang][key]) {
-                if (key === 'homeTitle') {
-                    element.innerHTML = translations[lang][key];
-                } else {
-                    element.textContent = translations[lang][key];
-                }
-                // Define os aria-labels iniciais
-                if (element.tagName === 'BUTTON' || element.tagName === 'A') {
-                    if (key === 'menuToggleLabel' || key === 'carouselPrevLabel' || key === 'carouselNextLabel' || key.startsWith('audioToggle')) {
-                        element.setAttribute('aria-label', translations[lang][key]);
-                    }
-                }
-            }
-        });
-    };
-    initialLoadUpdate(currentLang);
+    // Define o idioma inicial (sem animação, usando a nova função)
+    applyTranslations(currentLang);
 
 
     /**
@@ -203,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (menuToggleIcon) {
                     menuToggleIcon.classList.remove('fa-times');
                     menuToggleIcon.classList.add('fa-bars');
-                    // Atualiza o aria-label ao fechar
                     document.querySelector('.menu-toggle').setAttribute('aria-label', translations[currentLang]['menuToggleLabel']);
                 }
             }
@@ -305,11 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (navMenu.classList.contains('active')) {
                     icon.classList.remove('fa-bars');
                     icon.classList.add('fa-times');
-                    // Atualiza aria-label para "Fechar Menu" (precisaria adicionar no translations)
                 } else {
                     icon.classList.remove('fa-times');
                     icon.classList.add('fa-bars');
-                    // Atualiza aria-label para "Abrir Menu"
                     menuToggle.setAttribute('aria-label', translations[currentLang]['menuToggleLabel']);
                 }
             }
@@ -345,7 +341,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /**
-     * NOVA LÓGICA: Controle de Áudio
+     * LÓGICA: Controle de Áudio (Atualizado para volume baixo e autoplay)
      */
     const audio = document.getElementById('bg-music');
     const audioToggleBtn = document.getElementById('audio-toggle-btn');
@@ -353,12 +349,29 @@ document.addEventListener('DOMContentLoaded', () => {
     if (audio && audioToggleBtn) {
         const audioIcon = audioToggleBtn.querySelector('i');
 
+        // Define o volume inicial baixo
+        audio.volume = 0.7; 
+
+        // Tenta dar play (o navegador pode bloquear)
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                // Autoplay funcionou!
+                audioIcon.classList.remove('fa-volume-mute');
+                audioIcon.classList.add('fa-volume-up');
+                audioToggleBtn.setAttribute('data-key', 'audioTogglePause');
+                audioToggleBtn.setAttribute('aria-label', translations[currentLang]['audioTogglePause']);
+            }).catch(error => {
+                // Autoplay bloqueado. O usuário precisará clicar.
+                console.warn("Autoplay da música foi bloqueado pelo navegador.");
+                audioIcon.classList.add('fa-volume-mute'); // Garante que está mudo
+            });
+        }
+
+        // Lógica do clique no botão
         audioToggleBtn.addEventListener('click', () => {
             if (audio.paused) {
-                audio.play().catch(error => {
-                    // O play() pode falhar se o usuário não interagiu com a página
-                    console.warn("Audio play failed. User interaction might be required.", error);
-                });
+                audio.play(); // O clique do usuário permite isso
                 audioIcon.classList.remove('fa-volume-mute');
                 audioIcon.classList.add('fa-volume-up');
                 audioToggleBtn.setAttribute('data-key', 'audioTogglePause');
