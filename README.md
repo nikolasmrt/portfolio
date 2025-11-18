@@ -1,45 +1,16 @@
-# 🌐 Nikolas Martins — Developer Portfolio
+# React + Vite
 
-Bem-vindo ao meu portfólio pessoal de desenvolvedor!  
-Este projeto mostra minhas habilidades, projetos e identidade profissional como um desenvolvedor de software com paixão por automação, arquitetura limpa e soluções de impacto.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## 🚀 Demo Ao Vivo
+Currently, two official plugins are available:
 
-Você pode acessar o portfólio em:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-**[https://portfolio-seven-bice-93.vercel.app/](https://portfolio-seven-bice-93.vercel.app/)** > Ou abra o `index.html` no seu navegador localmente.
+## React Compiler
 
-## 🛠️ Tecnologias Utilizadas
+The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
 
-- **HTML5 & CSS3** (Semântico, Responsivo, UI Moderna)
-- **JavaScript (Vanilla)** (i18n, Lightbox, Player de Áudio, Carrossel)
-- **Google Fonts** & **FontAwesome Icons**
+## Expanding the ESLint configuration
 
-## ✨ Funcionalidades
-
-- Layout totalmente responsivo com navegação suave.
-- **Internacionalização (i18n):** Site completo em Inglês e Português (BR) com animação de *fade* na troca.
-- **Carrossel de Projetos:** Navegação interativa pelos meus trabalhos.
-- **Lightbox de Imagem:** Zoom nas imagens dos projetos para melhor visualização.
-- **Música de Fundo:** Player com controle de play/pause e volume baixo por padrão.
-- Tema *dark* limpo e profissional.
-
-## 📌 Projetos Incluídos
-
-| Projeto | Descrição |
-| --- | --- |
-| **Eco-Life Sustentabilidade** | App desktop em Python (PySide6) para rastrear hábitos sustentáveis. |
-| **Tradutor Multilíngue** | Ferramenta de tradução usando PySide6 e a API MyMemory. |
-| **Sanrio Website** | Website estático (HTML/CSS) para aprendizado de layout. |
-| **Finance Tracker** | App web simples (HTML/CSS/JS) para rastreamento de finanças. |
-| **BookManagement API** | API RESTful em Python (FastAPI) para gerenciamento de livros. |
-| **Em Breve!** | Meu próximo grande projeto. |
-
-## 🤝 Vamos nos Conectar
-
-- [GitHub](https://github.com/nikolasmrt)
-- [LinkedIn](https://www.linkedin.com/in/nikolas-martins-oliveira/)
-
----
-
-> Construído com 💻, criatividade e propósito por Nikolas Martins.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
