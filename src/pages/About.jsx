@@ -84,7 +84,7 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.8 }}
-                    href="/cv-Nikolas_Martins 2025.pdf" 
+                    href="/cv-Nikolas_Martins.pdf" 
                     target="_blank"
                     onMouseEnter={playHover}
                     onClick={playClick}
