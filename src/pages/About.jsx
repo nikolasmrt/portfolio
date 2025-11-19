@@ -72,26 +72,12 @@ const About = () => {
                         initial={{ x: 50, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: index * 0.15 }}
-                        className="p-6 transition-colors border bg-slate-950/60 border-slate-700/50 rounded-xl hover:border-cyan-500/30 backdrop-blur-sm"
-                    >
+                        className="p-6 transition-colors border bg-slate-950/60 border-slate-700/50 rounded-xl hover:border-cyan-500/30 backdrop-blur-sm">
                         <p className="text-lg font-light leading-relaxed text-slate-300">
                             {paragraph}
                         </p>
                     </motion.div>
                 ))}
-                
-                <motion.a
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8 }}
-                    href="/cv-Nikolas_Martins.pdf" 
-                    target="_blank"
-                    onMouseEnter={playHover}
-                    onClick={playClick}
-                    className="inline-flex items-center gap-2 px-6 py-3 mt-4 font-bold text-white transition-all rounded-lg bg-slate-700 hover:bg-cyan-600 group"
-                >
-                    <FaDownload className="group-hover:animate-bounce" /> Download CV
-                </motion.a>
             </div>
         </div>
 
