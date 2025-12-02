@@ -14,7 +14,7 @@ const Contact = () => {
         icon: <FaLinkedin size={32} />, 
         name: "LinkedIn", 
 
-        url: "https://www.linkedin.com/in/nikolas-martins-oliveira/", 
+        url: "https://www.linkedin.com/in/nikolasmrt/", 
         color: "group-hover:text-blue-500", 
         border: "group-hover:border-blue-500" 
     },
